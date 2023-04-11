@@ -1,0 +1,53 @@
+                                                            Django Debug Toolbar Installation :
+
+----------------------------------------------------------------------------Step 1----------------------------------------------------------------------
+Install the 'django-debug-toolbar' in the terminal:
+
+    In my case I used pipenv,
+
+    'pipenv install django-debug-toolbar'
+
+----------------------------------------------------------------------------Step 2----------------------------------------------------------------------
+Add the 'debug-toolbar' in settings.py file:
+
+    INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'debug_toolbar',  #<----this one
+]
+
+----------------------------------------------------------------------------Step 3----------------------------------------------------------------------
+Add the debug toolbar Middleware in the settings.py file in the MIDDLEWARE section:
+
+    MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', #<---- this one
+]
+
+----------------------------------------------------------------------------Step 4----------------------------------------------------------------------
+Include the Localhost IP address in a new section in the settings.py file:
+
+    INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+
+----------------------------------------------------------------------------Step 5----------------------------------------------------------------------
+In the urls.py project folder add the following path:
+
+    urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('__debug__/', include('debug_toolbar.urls')),  #<-----
+]
+
+
